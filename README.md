@@ -29,13 +29,6 @@ Add Tesseract to your system PATH:
 export PATH="/usr/local/opt/tesseract/bin:$PATH"
 ```
 
-5. Install Docker:
-
-```bash
-brew install docker
-```
-
-Make sure docker daemon is running, you can check this by running `docker ps`. Also add docker to your PATH:
 
 
 ## Configuration
