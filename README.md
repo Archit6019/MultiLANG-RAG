@@ -37,7 +37,6 @@ export PATH="/usr/local/opt/tesseract/bin:$PATH"
 
 ```bash
 export GROQ_API_KEY="your-groq-api-key"
-export QDRANT_URL="http://localhost:6333" - This is where qdrant will run locally, make sure docker daemon is running for this to work
 ```
 
 ## Running the System
