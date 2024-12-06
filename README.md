@@ -28,6 +28,7 @@ pip install -r requirements.txt
 ```bash
 sudo apt-get update
 sudo apt-get install tesseract-ocr
+```
 
 Add Tesseract to your system PATH:
 
@@ -39,9 +40,10 @@ export PATH="/usr/local/opt/tesseract/bin:$PATH"
 
 ```bash
 brew install docker
+```
 
 Make sure docker daemon is running, you can check this by running `docker ps`. Also add docker to your PATH:
-```
+
 
 ## Configuration
 
