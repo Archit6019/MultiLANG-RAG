@@ -6,50 +6,46 @@ import time
 
 processor = DocumentProcessor()
 
-def setup_qdrant():
-    try:
-        print(f"Pulling Qdrant image...")
-        subprocess.run(["docker", "pull", "qdrant/qdrant"], check=True)
+# def setup_qdrant():
+#     try:
+#         print(f"Pulling Qdrant image...")
+#         subprocess.run(["docker", "pull", "qdrant/qdrant"], check=True)
 
-        storage_path = os.path.join(os.getcwd(), "qdrant_storage")
-        os.makedirs(storage_path, exist_ok=True)
+#         storage_path = os.path.join(os.getcwd(), "qdrant_storage")
+#         os.makedirs(storage_path, exist_ok=True)
 
-        subprocess.run(["docker", "rm", "-f", "qdrant_container"], capture_output=True)
-        print("Starting Qdrant container...")
-        subprocess.run([
-            "docker", "run",
-            "-d",
-            "--name", "qdrant_container",
-            "-p", "6333:6333",
-            "-p", "6334:6334",
-            "-v", f"{storage_path}:/qdrant/storage:z",
-            "qdrant/qdrant"
-        ], check=True)
+#         subprocess.run(["docker", "rm", "-f", "qdrant_container"], capture_output=True)
+#         print("Starting Qdrant container...")
+#         subprocess.run([
+#             "docker", "run",
+#             "-d",
+#             "--name", "qdrant_container",
+#             "-p", "6333:6333",
+#             "-p", "6334:6334",
+#             "-v", f"{storage_path}:/qdrant/storage:z",
+#             "qdrant/qdrant"
+#         ], check=True)
 
-        time.sleep(5)
+#         time.sleep(5)
 
-        result = subprocess.run(
-            ["docker", "ps", "-q", "-f", "name=qdrant_container"],
-            capture_output=True,
-            text=True
-        )
+#         result = subprocess.run(
+#             ["docker", "ps", "-q", "-f", "name=qdrant_container"],
+#             capture_output=True,
+#             text=True
+#         )
 
-        print(f"Qdrant container status: {bool(result.stdout.strip())}")
-        return bool(result.stdout.strip())
-    except Exception as e:
-        print(f"Error setting up Qdrant: {e}")
-        return False
+#         print(f"Qdrant container status: {bool(result.stdout.strip())}")
+#         return bool(result.stdout.strip())
+#     except Exception as e:
+#         print(f"Error setting up Qdrant: {e}")
+#         return False
 
 def ui():
 
-    qdrant_ready = setup_qdrant()
+    #qdrant_ready = setup_qdrant()
 
     with gr.Blocks() as app:
         gr.Markdown("## AI-Driven Document and Chat Interface")
-
-        if not qdrant_ready:
-            gr.Markdown("## Qdrant container failed to start. Please check the logs for more details.")
-            return
 
         with gr.Tab("Create Collection"):
             name = gr.Textbox(label="Collection Name")
