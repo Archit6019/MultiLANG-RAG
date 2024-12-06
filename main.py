@@ -9,7 +9,7 @@ from sentence_transformers import CrossEncoder
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-QDRANT_URL = os.environ.get("QDRANT_URL", None)
+#QDRANT_URL = os.environ.get("QDRANT_URL", None)
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 
 class DocumentProcessor:
@@ -18,7 +18,7 @@ class DocumentProcessor:
         self.cross_encoder = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2", device=device)
         self.processor = Processor(embedder=self.embedder)
         self.groq_client = Groq(api_key=GROQ_API_KEY)
-        self.qdrant_client = QdrantClient(url=QDRANT_URL)
+        self.qdrant_client = QdrantClient(":memory:")
         self.context = []
         self.context.append({
             "role": "system",
